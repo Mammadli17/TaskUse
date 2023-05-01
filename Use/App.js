@@ -9,6 +9,7 @@ import { useState,useEffect } from 'react';
 
 export default function App() {
   const [data, setData] = useState([])
+  const [originalProducts, setoriginalProducts] = useState([])
  
   useEffect(() => {
     myData();
@@ -19,11 +20,12 @@ export default function App() {
     axios.get('https://644fdf02b61a9f0c4d2d9fb4.mockapi.io/body/Users')
       .then(response => {
         setData(response.data)
+        setoriginalProducts(response.data);
       });
   }
   const myFunc = (value) => {
 
-    let filteredData = data.filter(item => item.HeadPart.toLowerCase().includes(value.toLowerCase()));
+    let filteredData = originalProducts.filter(item => item.HeadPart.toLowerCase().includes(value.toLowerCase()));
     setData([...filteredData])
     
 
